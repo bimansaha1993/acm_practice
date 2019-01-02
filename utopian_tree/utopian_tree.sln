@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "utopian_tree", "utopian_tree\utopian_tree.vcxproj", "{1253EFC7-EBF6-49BA-8254-39ED5F9EED47}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1253EFC7-EBF6-49BA-8254-39ED5F9EED47}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1253EFC7-EBF6-49BA-8254-39ED5F9EED47}.Debug|Win32.Build.0 = Debug|Win32
+		{1253EFC7-EBF6-49BA-8254-39ED5F9EED47}.Release|Win32.ActiveCfg = Release|Win32
+		{1253EFC7-EBF6-49BA-8254-39ED5F9EED47}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

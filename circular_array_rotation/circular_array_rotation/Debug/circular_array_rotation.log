@@ -1,0 +1,16 @@
+﻿Build started 12/18/2018 11:54:16 AM.
+     1>Project "D:\coding_prac\circular_array_rotation\circular_array_rotation\circular_array_rotation.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp
+         Source.cpp
+     1>d:\coding_prac\circular_array_rotation\circular_array_rotation\source.cpp(5): warning C4101: 'z' : unreferenced local variable
+     1>d:\coding_prac\circular_array_rotation\circular_array_rotation\source.cpp(5): warning C4101: 'l' : unreferenced local variable
+     1>d:\coding_prac\circular_array_rotation\circular_array_rotation\source.cpp(5): warning C4101: 'j' : unreferenced local variable
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\coding_prac\circular_array_rotation\Debug\circular_array_rotation.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\coding_prac\circular_array_rotation\Debug\circular_array_rotation.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\coding_prac\circular_array_rotation\Debug\circular_array_rotation.lib" /MACHINE:X86 Debug\Source.obj
+         circular_array_rotation.vcxproj -> D:\coding_prac\circular_array_rotation\Debug\circular_array_rotation.exe
+     1>Done Building Project "D:\coding_prac\circular_array_rotation\circular_array_rotation\circular_array_rotation.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.01
