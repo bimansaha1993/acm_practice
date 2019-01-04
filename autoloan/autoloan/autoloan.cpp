@@ -20,14 +20,14 @@ int main()
 		}
 		if (abs(balance) <= eps)
 		{
-			cout << setprecision(15) << mid << endl;
+			low=mid;
 			break;
 		}
 		else if (balance < 0)
 			low = mid;
 		else
 			high = mid;
-		
 	}
+	cout << setprecision(15) << mid << endl;
 	return 0;
 }
