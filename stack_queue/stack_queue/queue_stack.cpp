@@ -8,7 +8,7 @@ void clear()
 	size = 0;
 }
 
-bool is_empty()
+bool isempty()
 {
 	if (size == 0)
 		return 0;
@@ -26,7 +26,7 @@ void enqueue(int val)
 
 void dequeue()
 {
-	if (size == 0)
+	if (isempty())
 		return ;
 	temp = queue[front];
 	front = (front + 1) % capacity;
@@ -46,7 +46,7 @@ int main()
 {
 	cin >> capacity;
 	clear();
-	bool is_empty();
+	bool isempty();
 	enqueue(10);
 	display();
 	cout << front << " " << rear << endl;
