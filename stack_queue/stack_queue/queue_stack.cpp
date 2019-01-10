@@ -18,7 +18,7 @@ void enqueue(int val)
 {
 	if (size == capacity)
 		return;
-	queue[size] = val;
+	queue[rear] = val;
 	rear = (rear + 1) % capacity;
 	size++;
 	return;
