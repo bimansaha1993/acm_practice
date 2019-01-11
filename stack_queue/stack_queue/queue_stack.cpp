@@ -11,7 +11,9 @@ void clear()
 bool isempty()
 {
 	if (size == 0)
-		return 0;
+		return true;
+	else
+		return false;
 }
 
 void enqueue(int val)

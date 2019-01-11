@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-int n, e, a[1000][1000],rear,front,size,queue[100],capacity=100,visit[100],mat[100][100],u[11],x=0;
+int n, e, a[1000][1000],rear,front,size,queue[100],capacity=100,visit[100],mat[100][100],u[11],head[11],x=0,y=0,inf=999;
 
 void clear()
 {
@@ -37,27 +37,44 @@ int dequeue()
 	return temp;
 }
 
-bool bfs(int start,int des)
+int bfs(int start,int des)
 {
 	clear();
 	enqueue(start);
 	visit[start] = true;
 	while (!isempty())
 	{
-		 u[x] = dequeue();
-		if (u[x] == des)
+		u[x] = dequeue();
+		/*if (u[x] == des)
+		{
 			return true;
+		}*/
 		for (int v = 1; v <= n; v++)
 		{
 			if (a[u[x]][v] && !visit[v])
 			{
 				enqueue(v);
+				head[v] = u[x];
 				visit[v] = true;
 			}
 		}
 		x++;
 	}
-	return false;
+	cout << "path to move all node" << endl;
+	for (int i = 0; i < x; i++)
+	{
+		cout << u[i] << " ";
+	}
+	cout << endl;
+	cout << "path to go destination" << endl;
+	int current = des;
+	cout << current << " ";
+	while (current != start)
+	{
+		current = head[current];
+		cout << current << " ";
+	}
+	return 0;
 }
 
 int main()
@@ -78,21 +95,22 @@ int main()
 		a[n2][n1] = cost;
 	}
 	int start, des;
-	cin >> start >> des;
-	/*for (int i = 1; i <= n; i++)
+	cin >> start>>des;
+	cout << "Adjacency Matrix" << endl;
+	for (int i = 1; i <= n; i++)
 	{
 		for (int j = 1; j <= n; j++)
 		{
 			cout << a[i][j] << " ";
 		}
 		cout << endl;
-	}*/
-	bool d = bfs(start, des);
+	}
+	/*bool d = bfs(start, des);
 	if (d == true)
 	{
-		for (int i = 0; i < x; i++)
+		for (int i = 0; i <= x; i++)
 			cout << u[i]<<endl;
-	}
-	//cout << bfs(start, des);
+	}*/
+	bfs(start,des);
 	return 0;
 }

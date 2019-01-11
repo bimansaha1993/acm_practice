@@ -72,6 +72,6 @@ int main()
 	//display();
 	//dequeue();
 	//display();
-	cout << queue[front] << " " << queue[rear] << endl;
+	cout << front<<"->"<< queue[front] << " "<<rear<<"->" << queue[rear] << endl;
 	
 }
