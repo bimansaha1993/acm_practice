@@ -1,18 +1,20 @@
 #include<iostream>
 using namespace std;
 
-int n, e, a[1000][1000],rear,front,size,queue[100],capacity=100,visit[100],mat[100][100],u[11],head[11],x=0,y=0,inf=999;
+#define max_node 20
 
+int node_cnt, edge_cnt, adj_mat[max_node][max_node], queue_rear, queue_front, queue_size, queue[max_node], queue_capacity = max_node, parent[max_node];
+bool visit[max_node];
 void clear()
 {
-	front = 0;
-	rear = 0;
-	size = 0;
+	queue_front = 0;
+	queue_rear = 0;
+	queue_size = 0;
 }
 
 bool isempty()
 {
-	if (size == 0)
+	if (queue_size == 0)
 		return true;
 	else 
 		return false;
@@ -20,97 +22,88 @@ bool isempty()
 
 void enqueue(int start)
 {
-	if (size == capacity)
+	if (queue_size == queue_capacity)
 		return;
-	queue[rear] = start;
-	size++;
-	rear=(rear+1)%capacity;
+	queue[queue_rear] = start;
+	queue_size++;
+	queue_rear=(queue_rear+1)%queue_capacity;
 }
 
 int dequeue()
 {
 	if (isempty())
 		return 0;
-	int temp = queue[front];
-	front = (front + 1) % capacity;
-	size--;
+	int temp = queue[queue_front];
+	queue_front = (queue_front + 1) % queue_capacity;
+	queue_size--;
 	return temp;
 }
 
-int bfs(int start,int des)
+void bfs_reset()
 {
 	clear();
+	for (int i = 1; i <= node_cnt; i++)
+	{
+		visit[i] = 0;
+		parent[i] = -1;
+	}
+}
+
+bool bfs(int start,int des)
+{
+	bfs_reset();
 	enqueue(start);
 	visit[start] = true;
 	while (!isempty())
 	{
-		u[x] = dequeue();
-		/*if (u[x] == des)
+		int u = dequeue();
+		for (int v = 1; v <= node_cnt; v++)
 		{
-			return true;
-		}*/
-		for (int v = 1; v <= n; v++)
-		{
-			if (a[u[x]][v] && !visit[v])
+			if (adj_mat[u][v] && !visit[v])
 			{
 				enqueue(v);
-				head[v] = u[x];
+				parent[v] = u;
 				visit[v] = true;
 			}
 		}
-		x++;
 	}
-	cout << "path to move all node" << endl;
-	for (int i = 0; i < x; i++)
-	{
-		cout << u[i] << " ";
-	}
-	cout << endl;
-	cout << "path to go destination" << endl;
-	int current = des;
-	cout << current << " ";
-	while (current != start)
-	{
-		current = head[current];
-		cout << current << " ";
-	}
-	return 0;
+	return visit[des];
+}
+
+void print_path(int des)
+{
+	if (des == -1)
+		return;
+	print_path(parent[des]);
+	cout << des << " ";
 }
 
 int main()
 {
-	cin >> n >> e;
-	for (int i = 1; i <= n; i++)
+	cin >> node_cnt >> edge_cnt;
+	for (int i = 1; i <= node_cnt; i++)
 	{
-		for (int j = 1; j <= n; j++)
+		for (int j = 1; j <= node_cnt; j++)
 		{
-			a[i][j] = 0;
+			adj_mat[i][j] = 0;
 		}
 	}
-	for (int i = 1; i <= e; i++)
+	for (int i = 1; i <= edge_cnt; i++)
 	{
 		int n1,n2,cost = 1;
 		cin >> n1 >> n2;
-		a[n1][n2] = cost;
-		a[n2][n1] = cost;
+		adj_mat[n1][n2] = cost;
+		adj_mat[n2][n1] = cost;
 	}
 	int start, des;
 	cin >> start>>des;
-	cout << "Adjacency Matrix" << endl;
-	for (int i = 1; i <= n; i++)
-	{
-		for (int j = 1; j <= n; j++)
-		{
-			cout << a[i][j] << " ";
-		}
-		cout << endl;
-	}
-	/*bool d = bfs(start, des);
+	bool d = bfs(start, des);
 	if (d == true)
 	{
-		for (int i = 0; i <= x; i++)
-			cout << u[i]<<endl;
-	}*/
-	bfs(start,des);
+		print_path(des);
+
+	}
+	else
+		cout << "No Cycle" << endl;
 	return 0;
 }
