@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-#define max_node 20
+#define max_node 201
 
 int node_cnt, edge_cnt, adj_mat[max_node][max_node], queue_rear, queue_front, queue_size, queue[max_node], queue_capacity = max_node, colour[max_node];
 void clear()
@@ -67,11 +67,12 @@ void bfs(int start)
 
 int main()
 {
-	int test_case;
-	cin >> test_case;
-	for (int k = 1; k <= test_case; k++)
+
+	while(true)
 	{
 		cin >> node_cnt;
+		if(node_cnt==0)
+			break;
 		cin >> edge_cnt;
 		for (int i = 0; i < node_cnt; i++)
 		{
@@ -116,7 +117,7 @@ int main()
 		if (is_possible == 1)
 			cout << "BICOLORABLE." << endl;
 		else
-			cout << "NOT BICOLORABLE" << endl;
+			cout << "NOT BICOLORABLE." << endl;
 	}
 	return 0;
 }
