@@ -15,10 +15,6 @@ int main()
 		if (abs(a-time)<=eps )
 		{
 			low = mid;
-<<<<<<< HEAD
-			//cout << setprecision(15) << mid << endl;
-=======
->>>>>>> f02d47311698ff074e24d8f597b0aeb1a8f0da6c
 			break;
 		}
 		else if (a < time)
@@ -26,11 +22,6 @@ int main()
 		else
 			high = mid ;
 	}
-<<<<<<< HEAD
-	
 	cout << setprecision(15) << low << endl;
-=======
-	cout << setprecision(15) << mid << endl;
->>>>>>> f02d47311698ff074e24d8f597b0aeb1a8f0da6c
 	return 0;
 }
