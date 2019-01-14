@@ -20,11 +20,7 @@ int main()
 		}
 		if (abs(balance) <= eps)
 		{
-<<<<<<< HEAD
 			low = mid;
-=======
-			low=mid;
->>>>>>> f02d47311698ff074e24d8f597b0aeb1a8f0da6c
 			break;
 		}
 		else if (balance < 0)
@@ -32,10 +28,6 @@ int main()
 		else
 			high = mid;
 	}
-<<<<<<< HEAD
 	cout << setprecision(15) << low << endl;
-=======
-	cout << setprecision(15) << mid << endl;
->>>>>>> f02d47311698ff074e24d8f597b0aeb1a8f0da6c
 	return 0;
 }
