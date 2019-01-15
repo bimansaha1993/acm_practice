@@ -22,6 +22,7 @@ int main()
 		else
 			high = mid ;
 	}
-	cout << setprecision(15) << low << endl;
+	//cout << setprecision(15) << low << endl;
+	printf("%.12f", low);
 	return 0;
 }

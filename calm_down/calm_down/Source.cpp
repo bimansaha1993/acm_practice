@@ -22,7 +22,8 @@ int main()
 			else 
 				l = m;
 		}
-		cout << "Case " << i << ": " << setprecision(11) << l << endl;
+		//cout << "Case " << i << ": " << setprecision(11) << l << endl;
+		printf("Case %d: %.11f",i, l);
 	}
 	return 0;
 }
