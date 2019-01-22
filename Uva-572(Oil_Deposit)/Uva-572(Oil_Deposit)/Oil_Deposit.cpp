@@ -24,7 +24,6 @@ void dfs(int i, int j)
 
 int main()
 {
-	int x = 0;
 	while (true)
 	{
 		cin >> m >> n;
