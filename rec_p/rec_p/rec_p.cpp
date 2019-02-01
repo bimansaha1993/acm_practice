@@ -1,20 +1,25 @@
 #include<iostream>
 using namespace std;
-int n,a[100],s[100];
+int n,a[101],s[101];
 void rec(int i)
 {
 	if (i == n)
 	{  
-		cout << "{";
+		int isfirst = 1,sum=0;
+		//cout << "{";
 		for (int j = 0; j < n; j++)
 		{
-			if (a[j] == 1){
-				cout << s[j]<<",";
-				//if (j < n - 1)
-					//cout << ",";
+			if (a[j] == 1)
+			{
+				sum = sum + s[j];
+				/*if (isfirst)
+					isfirst = 0;
+				else
+					cout << ",";*/
+				//cout << s[j];
 			}
 		}
-		cout << "}"<<endl;
+		cout<<sum <<endl;
 		return;
 	}
 	a[i] = 0;
