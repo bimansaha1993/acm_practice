@@ -1,0 +1,11 @@
+# ignore all
+*.*
+
+# white list any directory, whithout whitelisting directories we 
+# will be unable to get any files that is not directly inside root
+!*/
+
+# whitelist these file types
+!*.cpp
+!*.c
+!.gitignore
