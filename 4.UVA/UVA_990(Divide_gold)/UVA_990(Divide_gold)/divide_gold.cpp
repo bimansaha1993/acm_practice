@@ -8,9 +8,9 @@ int divide_gold(int i, int cap)
 	int profit1=0, profit2=0;
 	if (i >= num_tre)
 		return 0;
-	if (cap > (3 * w*d[i])){
+	if (cap > (3 * w * d[i]))
+	{
 		profit1 = v[i] + divide_gold(i + 1, (cap - (3 * w*d[i])));
-		cnt++;
 	}
 	profit2 = divide_gold(i + 1, cap);
 	if (profit1 > profit2)
