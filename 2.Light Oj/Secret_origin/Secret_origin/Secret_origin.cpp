@@ -1,13 +1,17 @@
 #include<iostream>
 using namespace std;
 
-long long int a[35], cnt=0;
+long long int a[35], cnt;
 
 long long int binary(int n)
 {
 	long long int next_orginal, j = 0;
 	next_orginal = n;
 	int next_cnt = 0;
+	for(int k=0; k<35; k++)
+    {
+        a[k]=0;
+    }
 	while (n > 0)
 	{
 		a[j] = n % 2;
@@ -31,9 +35,9 @@ int main()
 	for (int k = 1; k <= t; k++)
 	{
 		cin >> n;
-		orginal = n;
+		orginal = n,cnt=0;
 		int j = 0;
-		for (int x = 0; x <= 35; x++)
+		for (int x = 0; x < 35; x++)
 		{
 			a[x] = 0;
 		}
