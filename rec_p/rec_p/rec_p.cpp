@@ -5,13 +5,14 @@ void rec(int i)
 {
 	if (i == n)
 	{  
-		int isfirst = 1,sum=0;
+		int isfirst = 1,sum=0,cnt=0;
 		//cout << "{";
 		for (int j = 0; j < n; j++)
 		{
 			if (a[j] == 1)
 			{
-				sum = sum + s[j];
+				cnt++;
+				//sum = sum + s[j];
 				/*if (isfirst)
 					isfirst = 0;
 				else
@@ -19,7 +20,18 @@ void rec(int i)
 				//cout << s[j];
 			}
 		}
-		cout<<sum <<endl;
+		if (cnt == 3)
+		{
+			for (int l = 0; l < n; l++)
+			{
+				if (a[l] == 1)
+				{
+					cout << s[l] << " ";
+				}
+			}
+			cout << endl;
+		}
+		//cout<<sum <<endl;
 		return;
 	}
 	a[i] = 0;

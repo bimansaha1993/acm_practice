@@ -27,19 +27,28 @@ void prime_number()
 	}
 }
 
-void find_set()
+int find_set()
 {
-	int sum = 0,n_cnt=0,set_cnt=0;
+	int set_cnt=0;
 	for (int i = 0; i < j; i++)
 	{
-		sum = sum + number[i];
-		n_cnt++;
-		if (sum == n && n_cnt == k)
+		int sum = 0,n_cnt=0;
+		for (int l = i+1; l < j; l++)
+		{
+			for (int m = l + 1; m < j; m++)
+			{
+				sum = sum + number[l];
+				n_cnt++;
+				if (n_cnt == k || sum > n)
+					break;
+			}
+		}
+		if (sum == n)
 		{
 			set_cnt++;
-			break;
 		}
 	}
+	return set_cnt;
 }
 
 int main()
@@ -50,12 +59,12 @@ int main()
 		if (n == 0 && k == 0)
 			break;
 		prime_number();
-		find_set();
-		for (int l = 0; l < j; l++)
+		int ans = find_set();
+		/*for (int l = 0; l < j; l++)
 		{
 			cout << number[l] << " ";
 		}
-		cout << endl;
+		cout << endl;*/
 	}
 	return 0;
 }

@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
-
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
 using namespace std;
 
 int n,m,cnt;
@@ -27,7 +29,7 @@ void dfs(int i, int j)
 
 int main()
 {
-    freopen("input.txt", "r", stdin);
+    //freopen("input.txt", "r", stdin);
 	int test;
 	//char line[101];
 	string line;
@@ -85,6 +87,5 @@ int main()
             }
 		}
 	}
-
 	return 0;
 }

@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-int d[31], v[31], t, w, num_tre,cnt=0;
+int d[31], v[31], t, w, num_tre;
 
 int divide_gold(int i, int cap)
 {
@@ -31,7 +31,6 @@ int main()
 		}
 		int result = divide_gold(0, t);
 		cout << result << endl;
-		cout << cnt << endl;
 	}
 	return 0;
 }
