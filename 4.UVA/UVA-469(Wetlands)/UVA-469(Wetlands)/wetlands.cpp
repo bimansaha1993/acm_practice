@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include<stdio.h>
+#include<cstdlib>
 #include<iostream>
 #include<string.h>
 using namespace std;
