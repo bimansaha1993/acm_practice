@@ -3,37 +3,39 @@ using namespace std;
 
 int n, a[100];
 
-void read()
-{
-	cin >> n;
-}
-
-void print()
-{
-	int i;
-	for (i = 0; i < n; i++)
-	{
-		cout << a[i];
-	}
-	cout << endl;
-}
-
 void solve(int i)
 {
 	if (i == n)
 	{
-		print();
-		return ;
+		for (int l = 0; l < n; l++)
+		{
+			for (int m = l + 1; m < n; m++)
+			{
+				if (a[l] == a[m])
+					return;
+			}
+		}
+		for (int k = 0; k < n; k++)
+		{
+			cout << a[k];
+		}
+		cout << endl;
+		return;
 	}
-	a[i] = 0;
+	for (int j = 0; j < n; j++)
+	{
+		a[i] = j;
+		solve(i + 1);
+	}
+	/*a[i] = 0;
 	solve(i + 1);
 	a[i] = 1;
-	solve(i + 1);
+	solve(i + 1);*/
 }
 
 int main()
 {
-	read();
+	cin >> n;
 	solve(0);
 	return 0;
 }
