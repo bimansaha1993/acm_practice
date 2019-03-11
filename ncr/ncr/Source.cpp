@@ -25,7 +25,7 @@ int main()
 			a[i][j] = -1;
 		}
 	}
-	long long result = c(n,r);
+	long long result = c(n,r)
 	cout << result << endl;
 	return 0;
 }
