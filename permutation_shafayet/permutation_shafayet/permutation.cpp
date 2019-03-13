@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-int n, r, arr[4], s[4], visited[4];
+int n, r, arr[7], s[7], visited[7];
 
 void permutation(int i)
 {
