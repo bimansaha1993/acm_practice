@@ -1,11 +1,11 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<cmath>
 #include<cstdio>
+#include <iomanip>
 using namespace std;
 
 int computer, x[9], y[9], visited[9], data[9], path[9];
-double length[9][9], min_cost = 9999.0;
+double length[9][9], min_cost;
 
 void calculate_length(int i,double cost)
 {
@@ -38,6 +38,7 @@ int main()
 	int test = 1;
 	while (true)
 	{
+		min_cost = 9999.0;
 		cin >> computer;
 		if (computer == 0)
 			break;
@@ -64,9 +65,9 @@ int main()
 		cout << "Network #" << test << endl;
 		for (int i = 1; i < computer; i++)
 		{
-			cout << "Cable requirement to connect (" << x[path[i-1]] <<"," << y[path[i-1]] << ") to (" << x[path[i]] <<"," << y[path[i]] << ") is " << length[path[i-1]][path[i]] << " feet."<< endl;
+			cout << "Cable requirement to connect (" << x[path[i - 1]] << "," << y[path[i - 1]] << ") to (" << x[path[i]] << "," << y[path[i]] << ") is " << setprecision(2) << fixed << length[path[i - 1]][path[i]] << " feet." << endl;
 		}
-		cout << "Number of feet of cable required is " << min_cost << endl;
+		cout << "Number of feet of cable required is " << setprecision(2) <<fixed << min_cost << endl;
 		test++;
 	}
 	return 0;
