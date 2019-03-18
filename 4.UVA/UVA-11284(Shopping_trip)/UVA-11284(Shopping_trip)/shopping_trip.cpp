@@ -1,8 +1,29 @@
 #include<iostream>
 using namespace std;
 
-int num_shop, num_road, num_dvd;
-double arr[52][52];
+int num_shop, num_road, num_dvd,x[1001],y[1001],found[15],visit[1001];
+double cost[1001], save[15], min_cost, amazon_save;
+
+void max_save(int i,int cnt,double costing)
+{
+	if (cnt == num_road)
+	{
+		if (costing < min_cost)
+		{
+			min_cost = costing;
+		}
+		return;
+	}
+	for (int j = 1; j < num_road; j++)
+	{
+		if (visit[j] == 0)
+		{
+			visit[j] = 1;
+			max_save(j, cnt++, costing + cost[j]);
+			visit[j] = 0;
+		}
+	}
+}
 
 int main()
 {
@@ -10,31 +31,20 @@ int main()
 	cin >> test;
 	while (test--)
 	{
+		min_cost = 999,amazon_save=0;
 		cin >> num_shop >> num_road;
-		for (int i = 0; i < num_shop; i++)
-		{
-			for (int j = 0; j < num_shop; j++)
-			{
-				arr[i][j] = 0;
-			}
-		}
 		for (int i = 0; i < num_road; i++)
 		{
-			int n1, n2;
-			double cost;
-			cin >> n1 >> n2 >> cost;
-			arr[n1][n2] = cost;
-			arr[n2][n1] = cost;
+			cin >> x[i] >> y[i] >> cost[i];
 		}
 		cin >> num_dvd;
-		for(int i = 0; i < num_shop; i++)
+		for (int i = 0; i < num_dvd; i++)
 		{
-			for (int j = 0; j < num_shop; j++)
-			{
-				cout<<arr[i][j]<<" ";
-			}
-			cout << endl;
+			cin >> found[i] >> save[i];
+			amazon_save = amazon_save + save[i];
 		}
+		max_save(0, 0, 0);
+		cout << amazon_save << " " << min_cost << endl;
 	}
 	return 0;
 }
