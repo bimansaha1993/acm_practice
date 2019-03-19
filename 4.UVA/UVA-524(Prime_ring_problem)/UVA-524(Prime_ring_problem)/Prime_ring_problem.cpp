@@ -2,11 +2,11 @@
 #include<math.h>
 using namespace std;
 
-int n,arr[17],visit[17];
+int n,arr[17],visit[17],prime[35];
 
 int is_prime(int p)
 {
-	int flag = 1;
+	/*int flag = 1;
 	for (int i = 2; i <= sqrt(p); i++)
 	{
 		if (p%i == 0)
@@ -18,7 +18,11 @@ int is_prime(int p)
 	if (flag == 1)
 		return 1;
 	else
-		return 0;
+		return 0;*/
+    if(prime[p]==1)
+        return 1;
+    else
+        return 0;
 }
 
 void circle_set(int i)
@@ -35,7 +39,9 @@ void circle_set(int i)
 		{*/
 			for (int j = 0; j < n; j++)
 			{
-				cout << arr[j] << " ";
+				cout << arr[j];
+				if(j<n-1)
+                    cout<<" ";
 			}
 			cout << endl;
 		//}
@@ -44,13 +50,17 @@ void circle_set(int i)
 	{
 		if (visit[j] == 0)
 		{
-			visit[j] = 1;
-			arr[i] = j;
-			//
-			int p = arr[i - 1] + arr[i];
+		    int p = arr[i - 1] + j;
 			if (is_prime(p) == 0)
 				continue;
-			//
+            if(i==n-1)
+            {
+                p=arr[0]+j;
+                if(is_prime(p)==0)
+                    continue;
+            }
+			visit[j] = 1;
+			arr[i] = j;
 			circle_set(i + 1);
 			visit[j] = 0;
 		}
@@ -59,10 +69,28 @@ void circle_set(int i)
 
 int main()
 {
+    //   seive for prime ///////
+    for(int i=0;i<35;i++)
+    {
+        prime[i]=1;
+    }
+    prime[0]=0;
+    prime[1]=0;
+    for(int i=2;i<=sqrt(35);i++)
+    {
+        if(prime[i]==1)
+        {
+            for(int j=i+i;j<35;j=j+i)
+            {
+                prime[j]=0;
+            }
+        }
+    }
+    //////////
+
 	int t = 1;
-	while (true)
+	while (cin >> n)
 	{
-		cin >> n;
 		for (int i = 1; i <= n; i++)
 		{
 			visit[i] = 0;
