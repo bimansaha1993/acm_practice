@@ -91,6 +91,8 @@ int main()
 	int t = 1;
 	while (cin >> n)
 	{
+		if (t > 1)
+			cout << endl;
 		for (int i = 1; i <= n; i++)
 		{
 			visit[i] = 0;
