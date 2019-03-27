@@ -3,8 +3,8 @@
 
 using namespace std;
 
-int n, m, k, array[4][4], cpy_array[4][4];
-int vec[4];
+int n, m, k, array[101][21], cpy_array[101][21];
+int vec[21];
 
 void apply_lasser(int c)
 {

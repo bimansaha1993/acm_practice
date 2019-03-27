@@ -1,10 +1,9 @@
 #include<iostream>
 using namespace std;
 
-#define max_node 20
+#define max 20
+int node, edge,adj_mat[max][max],queue_front,queue_rear,queue_size,queue_capacity=max,queue[max],visit[max],parent[max],path_cnt,path[max];
 
-int node_cnt, edge_cnt, adj_mat[max_node][max_node], queue_rear, queue_front, queue_size, queue[max_node], queue_capacity = max_node, parent[max_node], p_count, p[max_node];
-bool visit[max_node];
 void clear()
 {
 	queue_front = 0;
@@ -20,13 +19,13 @@ bool isempty()
 		return false;
 }
 
-void enqueue(int start)
+void enqueue(int value)
 {
 	if (queue_size == queue_capacity)
 		return;
-	queue[queue_rear] = start;
-	queue_size++;
+	queue[queue_rear] = value;
 	queue_rear = (queue_rear + 1) % queue_capacity;
+	queue_size++;
 }
 
 int dequeue()
@@ -42,32 +41,31 @@ int dequeue()
 void bfs_reset()
 {
 	clear();
-	for (int i = 1; i <= node_cnt; i++)
+	for (int i = 1; i <= node; i++)
 	{
 		visit[i] = 0;
 		parent[i] = -1;
 	}
 }
 
-bool bfs(int start, int des)
+void bfs(int start)
 {
 	bfs_reset();
 	enqueue(start);
-	visit[start] = true;
+	visit[start] = 1;
 	while (!isempty())
 	{
 		int u = dequeue();
-		for (int v = 1; v <= node_cnt; v++)
+		for (int v = 1; v <= node; v++)
 		{
 			if (adj_mat[u][v] && !visit[v])
 			{
 				enqueue(v);
+				visit[v] = 1;
 				parent[v] = u;
-				visit[v] = true;
 			}
 		}
 	}
-	return visit[des];
 }
 
 void print_path(int des)
@@ -75,15 +73,15 @@ void print_path(int des)
 	if (des == -1)
 		return;
 	print_path(parent[des]);
-	p[p_count] = des;
-	p_count++;
+	path[path_cnt] = des;
+	path_cnt++;
 }
 
-void sort(int p[], int length)
+void sort(int p[],int length)
 {
-	for (int i = 0; i <length; i++)
+	for (int i = 0; i < length; i++)
 	{
-		for (int j = i + 1; j <length; j++)
+		for (int j = i + 1; j < length; j++)
 		{
 			if (p[i]>p[j])
 			{
@@ -97,57 +95,56 @@ void sort(int p[], int length)
 
 int main()
 {
-	int test_case;
-	cin >> test_case;
-	for (int k = 1; k <=test_case; k++)
+	int test;
+	cin >> test;
+	for (int t = 1; t <= test; t++)
 	{
-
-		cin >> node_cnt >> edge_cnt;
-		for (int i = 1; i <= node_cnt; i++)
+		cin >> node >> edge;
+		for (int i = 1; i <= node; i++)
 		{
-			for (int j = 1; j <= node_cnt; j++)
+			for (int j = 1; j <= node; j++)
 			{
 				adj_mat[i][j] = 0;
 			}
 		}
-		for (int i = 1; i <= edge_cnt; i++)
+		for (int i = 1; i <= edge; i++)
 		{
 			int n1, n2, cost = 1;
 			cin >> n1 >> n2;
 			adj_mat[n1][n2] = cost;
 		}
 		int cycle_found = 0;
-		for (int i = 1; i <= node_cnt && cycle_found == 0; i++)
+		for (int i = 1; i <= node && cycle_found == 0; i++)
 		{
-			for (int j = 1; j <= node_cnt && cycle_found == 0; j++)
+			for (int j = 1; j <= node && cycle_found == 0; j++)
 			{
 				if (adj_mat[i][j])
 				{
 					int start = j;
 					int des = i;
-					bool d = bfs(start, des);
-					if (d == true)
+					bfs(start);
+					if (visit[des])
 					{
 						cycle_found = 1;
-						p_count = 0;
+						path_cnt = 0;
 						print_path(des);
-
 					}
+
 				}
 			}
 		}
 		if (cycle_found == 1)
 		{
-			sort(p, p_count);
-			cout << "Case " << k << ": ";
-			for (int i = 0; i < p_count; i++)
+			sort(path, path_cnt);
+			cout << "Case " << t << " :";
+			for (int i = 0; i < path_cnt; i++)
 			{
-				cout << p[i] << " ";
+				cout << path[i] << " ";
 			}
 			cout << endl;
 		}
 		else
-			cout << "Case " << k << ": " << "No Cycle" << endl;
+			cout << "Case " << t << " : " << "No Cycle Found" << endl;
 	}
 	return 0;
 }
