@@ -25,7 +25,6 @@ void dfs(int u)
 
 int main()
 {
-	
 	cin >> n >> e;
 	cin >> tme;
 	for (int i = 1; i <= n; i++)

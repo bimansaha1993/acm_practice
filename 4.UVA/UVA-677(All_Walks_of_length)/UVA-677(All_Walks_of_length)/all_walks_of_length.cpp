@@ -1,15 +1,16 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
+#include<stdio.h>
 using namespace std;
 
 int n, m, e, a[15][15], out[15], fg, taken[15];
 
 void rec(int node, int l)
 {
-	int i;
 	if (l == e + 1)
 	{
 		cout << "(1";
-		for (i = 1; i < l; i++)
+		for (int i = 1; i < l; i++)
 		{
 			cout << "," << out[i];
 		}
@@ -17,7 +18,7 @@ void rec(int node, int l)
 		fg = 1;
 		return;
 	}
-	for (i = 1; i <= n; i++)
+	for (int i = 1; i <= n; i++)
 	{
 		if (a[node][i] == 1 && taken[i] == 0)
 		{
@@ -31,18 +32,17 @@ void rec(int node, int l)
 
 int main()
 {
-	int i, j;
-	while (cin>>n)
+	//freopen("input.txt", "r", stdin);
+	while (cin>>n>>e)
 	{
 		if (n == -9999)
 		{
 			cout << endl;
 			continue;
 		}
-		cin >> e;
-		for (i = 1; i <= n; i++)
+		for (int i = 1; i <= n; i++)
 		{
-			for (j = 1; j <= n; j++)
+			for (int j = 1; j <= n; j++)
 			{
 				cin >> a[i][j];
 			}	
