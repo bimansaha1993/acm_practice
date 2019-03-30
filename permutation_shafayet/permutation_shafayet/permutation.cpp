@@ -1,40 +1,77 @@
 #include<iostream>
 using namespace std;
 
-int n, r, arr[7], s[7], visited[7];
+int n, k, number[200],j,set_cnt,sum,visit[200];
 
-void permutation(int i)
+void prime_number()
 {
-	if (i == r)
+	int first = 2;
+	j = 0;
+	while (first <= n)
 	{
-		for (int j = 0; j < r; j++)
+		int flag = 0;
+		for (int i = 2; i <= first / 2; i++)
 		{
-			cout << arr[j] << " ";
+			if (first%i == 0)
+			{
+				flag = 1;
+				break;
+			}
 		}
-		cout << endl;
-		return;
-	}
-	for (int j = 0; j < n; j++)
-	{
-		if (visited[j] == 0)
+		if (flag == 0)
 		{
-			visited[j] = 1;
-			arr[i] = s[j];
-			permutation(i + 1);
-			visited[j] = 0;
+			number[j] = first;
+			j++;
 		}
+		first++;
 	}
 }
 
+void find_set(int st, int cnt)
+{
+    if(cnt==k)
+    {
+		if(sum==n)
+		{
+			set_cnt++;
+		}
+		return;
+    }
+
+	for(int l=st; l<j; l++)
+	{
+		sum=sum+number[l];
+		find_set(l+1,cnt+1);
+		sum=sum-number[l];
+	}
+}
+
+
+// int find_set(int i, int cnt, int sum)
+// {
+//     if(cnt>=k)
+//     {
+//         return sum == n ? 1 : 0;
+//     }
+
+//     return find_set(i+1, cnt+1, sum + number[i]) + find_set(i+1, cnt, sum);
+// }
+
 int main()
 {
-	cin >> n;
-	for (int i = 0; i < n; i++)
+	while (cin>>n>>k)
 	{
-		cin >> s[i];
-		visited[i] = 0;
+		if (n == 0 && k == 0)
+			break;
+		prime_number();
+		for(int i=0;i<200;i++)
+		{
+			visit[i]=0;
+		}
+        sum=0,set_cnt=0;
+		find_set(0,0);
+        cout<<set_cnt<<endl;
 	}
-	cin >> r;
-	permutation(0);
+    system("pause");
 	return 0;
 }

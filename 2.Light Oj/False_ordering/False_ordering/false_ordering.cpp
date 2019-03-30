@@ -2,7 +2,7 @@
 using namespace std;
 int main()
 {
-	int number[1000],cnt_d[1000],j=0;
+	int number[1000],cnt_d[1000],j=1;
 	for (int k = 1; k <= 1000; k++)
 	{
 		int cnt = 0;
@@ -17,9 +17,39 @@ int main()
 		number[j] = k;
 		j++;
 	}
-	for (int l = 0; l < j; l++)
-	{
-		cout << "The number of divisor of the number " << number[l] << " is: " << cnt_d[l] << endl;
-	}
+    for(int i=1;i<=1000;i++)
+    {
+        for(int k=i;k<=1000;k++)
+        {
+            if(cnt_d[i]>cnt_d[k])
+            {
+                int temp=cnt_d[i];
+                cnt_d[i]=cnt_d[k];
+                cnt_d[k]=temp;
+
+                temp=number[i];
+                number[i]=number[k];
+                number[k]=temp;
+            }
+            if(cnt_d[i]==cnt_d[k])
+            {
+                if(number[i]<number[k])
+                {
+                    int temp=number[i];
+                    number[i]=number[k];
+                    number[k]=temp;
+                }
+            }
+        }
+    }
+    int test;
+    cin>>test;
+    for(int t=1;t<=test;t++)
+    {
+        int n;
+        cin>>n;
+        cout<<"Case "<<t<<": "<<number[n]<<endl;
+    }
+    system("pause");
 	return 0;
 }
