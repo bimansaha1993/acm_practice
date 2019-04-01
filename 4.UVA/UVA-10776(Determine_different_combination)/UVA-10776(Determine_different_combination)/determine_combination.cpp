@@ -4,38 +4,30 @@
 
 using namespace std;
 
-int n=0, r, a[35];
-char s[35];
+int n=0, r, visit[35];
+char a[35],s[35];
 
-void rec(int i)
+void rec(int i,int st)
 {
-	if (i == n)
+	if (i == r)
 	{
-		int cnt = 0;
-		for (int j = 0; j < n; j++)
+		for (int j = 0; j < r; j++)
 		{
-			if (a[j] == 1)
-			{
-				cnt++;
-			}
+			cout << a[j] << " ";
 		}
-		if (cnt == r)
-		{
-			for (int j = 0; j < n; j++)
-			{
-				if (a[j] == 1)
-				{
-					cout << s[j];
-				}
-			}
-			cout << endl;
-		}
+		cout << endl;
 		return;
 	}
-	a[i] = 1;
-	rec(i + 1);
-	a[i] = 0;
-	rec(i + 1);
+	for (int j = st; j < n; j++)
+	{
+		if (visit[j] == 0)
+		{
+			visit[j] = 1;
+			a[i] = s[j];
+			rec(i + 1, j + 1);
+			visit[j] = 0;
+		}
+	}
 }
 
 int main()
@@ -45,9 +37,13 @@ int main()
 		n = 0;
 		for (int i = 0; s[i]; i++)
 		{
-			n++;
+			n++;	
 		}
-		rec(0);
+		for (int i = 0; i < 35; i++)
+		{
+			visit[i] = 0;
+		}
+		rec(0,0);
 	}
 	return 0;
 }
