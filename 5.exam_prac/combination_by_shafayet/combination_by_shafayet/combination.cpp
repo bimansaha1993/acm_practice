@@ -1,9 +1,9 @@
 #include<iostream>
 using namespace std;
 
-int n, r, arr[7], s[7], visited[7];
+int n, r, arr[4], s[4],visit[4];
 
-void permutation(int i,int st)
+void combination(int i, int st)
 {
 	if (i == r)
 	{
@@ -16,12 +16,12 @@ void permutation(int i,int st)
 	}
 	for (int j = st; j < n; j++)
 	{
-		if (visited[j] == 0)
+		if (visit[j] == 0)
 		{
-			visited[j] = 1;
+			visit[j] = 1;
 			arr[i] = s[j];
-			permutation(i + 1,j+1);
-			visited[j] = 0;
+			combination(i + 1, j + 1);
+			visit[j] = 0;
 		}
 	}
 }
@@ -32,9 +32,9 @@ int main()
 	for (int i = 0; i < n; i++)
 	{
 		cin >> s[i];
-		visited[i] = 0;
+		visit[i] = 0;
 	}
 	cin >> r;
-	permutation(0,0);
+	combination(0, 0);
 	return 0;
 }

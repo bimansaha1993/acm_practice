@@ -33,13 +33,14 @@ void rec(int node, int l)
 int main()
 {
 	//freopen("input.txt", "r", stdin);
-	while (cin>>n>>e)
+	while (cin>>n)
 	{
 		if (n == -9999)
 		{
 			cout << endl;
 			continue;
 		}
+		cin >> e;
 		for (int i = 1; i <= n; i++)
 		{
 			for (int j = 1; j <= n; j++)
