@@ -1,11 +1,11 @@
 #include<iostream>
 using namespace std;
 
-int n, k, number[200],j;
+int n, k, number[200], j, set_cnt, sum;
 
 void prime_number()
 {
-	int first = 2; 
+	int first = 2;
 	j = 0;
 	while (first <= n)
 	{
@@ -27,44 +27,46 @@ void prime_number()
 	}
 }
 
-int find_set()
+void find_set(int st, int cnt)
 {
-	int set_cnt=0;
-	for (int i = 0; i < j; i++)
+	if (cnt == k)
 	{
-		int sum = 0,n_cnt=0;
-		for (int l = i+1; l < j; l++)
-		{
-			for (int m = l + 1; m < j; m++)
-			{
-				sum = sum + number[l];
-				n_cnt++;
-				if (n_cnt == k || sum > n)
-					break;
-			}
-		}
 		if (sum == n)
 		{
 			set_cnt++;
 		}
+		return;
 	}
-	return set_cnt;
+
+	for (int l = st; l<j; l++)
+	{
+		sum = sum + number[l];
+		find_set(l + 1, cnt + 1);
+		sum = sum - number[l];
+	}
 }
+
+
+// int find_set(int i, int cnt, int sum)
+// {
+//     if(cnt>=k)
+//     {
+//         return sum == n ? 1 : 0;
+//     }
+
+//     return find_set(i+1, cnt+1, sum + number[i]) + find_set(i+1, cnt, sum);
+// }
 
 int main()
 {
-	while (true)
+	while (cin >> n >> k)
 	{
-		cin >> n >> k;
 		if (n == 0 && k == 0)
 			break;
 		prime_number();
-		int ans = find_set();
-		/*for (int l = 0; l < j; l++)
-		{
-			cout << number[l] << " ";
-		}
-		cout << endl;*/
+		sum = 0, set_cnt = 0;
+		find_set(0, 0);
+		cout << set_cnt << endl;
 	}
 	return 0;
 }
