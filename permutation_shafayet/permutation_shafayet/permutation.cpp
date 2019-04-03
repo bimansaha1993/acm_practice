@@ -3,7 +3,7 @@ using namespace std;
 
 int n, r, arr[4], s[4], visit[4];
 
-void combination(int i)
+void permutation(int i)
 {
 	if (i == r)
 	{
@@ -20,7 +20,7 @@ void combination(int i)
 		{
 			visit[j] = 1;
 			arr[i] = s[j];
-			combination(i + 1);
+			permutation(i + 1);
 			visit[j] = 0;
 		}
 	}
@@ -35,6 +35,6 @@ int main()
 		visit[i] = 0;
 	}
 	cin >> r;
-	combination(0);
+	permutation(0);
 	return 0;
 }

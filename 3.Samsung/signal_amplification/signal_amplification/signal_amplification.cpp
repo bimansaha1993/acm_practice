@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <stdio.h>
 
@@ -84,7 +85,8 @@ int solve(int i, int c)
 
 int main()
 {
-	int test_case, case_no = 1;
+	//freopen("input.txt", "r", stdin);
+	int test_case;
 	cin >> test_case;
 	for (int t = 1; t <= test_case;t++)
 	{ 
