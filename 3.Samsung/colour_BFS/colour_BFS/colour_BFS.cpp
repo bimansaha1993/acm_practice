@@ -72,8 +72,6 @@ int main()
 	for (int k = 1; k <= test_case; k++)
 	{
 		cin >> node_cnt >> edge_cnt;
-		//cin >> node_cnt;
-		//cin >> edge_cnt;
 		for (int i = 1; i <= node_cnt; i++)
 		{
 			for (int j = 1; j <= node_cnt; j++)
@@ -109,7 +107,6 @@ int main()
 					if (colour[i] == colour[j])
 					{
 						is_possible = 0;
-
 					}
 				}
 			}

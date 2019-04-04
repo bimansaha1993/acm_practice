@@ -60,7 +60,6 @@ void print_path(int i, int j)
 
 int main()
 {
-
 	cin >> n;
 	int inf = 1000000;
 	for (int i = 0; i<5; i++)
