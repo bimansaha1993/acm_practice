@@ -3,8 +3,8 @@ using namespace std;
 
 int dx[4] = { 0, 0, +1, -1 };
 int dy[4] = { +1, -1, 0, 0 };
-int n, a[5], b[5], c[5], d[5], w[5];
-int cost[100][100], parent_x[100][100], parent_y[100][100];
+int n, a[5], b[5], c[5], d[5], w[5],end_x,end_y;
+int cost[1005][1005];
 
 void dfs(int i, int j)
 {
@@ -12,13 +12,11 @@ void dfs(int i, int j)
 	{
 		int new_i = i + dx[k];
 		int new_j = j + dy[k];
-		if (new_i < 0 || new_i >= n || new_j < 0 || new_j >= n)
+		if (new_i < 0 || new_i >= end_x+1 || new_j < 0 || new_j >= end_x+1)
 			continue;
 		if (cost[new_i][new_j] <= cost[i][j] + 1)
 			continue;
 		cost[new_i][new_j] = cost[i][j] + 1;
-		parent_x[new_i][new_j] = i;
-		parent_y[new_i][new_j] = j;
 		dfs(new_i, new_j);
 	}
 	for (int k = 0; k < 5; k++)
@@ -39,39 +37,42 @@ void dfs(int i, int j)
 		if (cost[new_i][new_j] <= cost[i][j] + w[k])
 			continue;
 		cost[new_i][new_j] = cost[i][j] + w[k];
-		parent_x[new_i][new_j] = i;
-		parent_y[new_i][new_j] = j;
 		dfs(new_i, new_j);
 	}
 }
 
-void print_path(int i, int j)
-{
-	if (i == -1 || j == -1)
-		return;
-	print_path(parent_x[i][j], parent_y[i][j]);
-	cout << i << " " << j << " " << cost[i][j]<<endl;
-}
-
 int main()
 {
-	cin >> n;
-	for (int i = 0; i < 5; i++)
+	int test,start_x,start_y;
+	cin >> test;
+	for (int t = 1; t <= test; t++)
 	{
-		cin >> a[i] >> b[i] >> c[i] >> d[i] >> w[i];
-	}
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < n; j++)
+		cin >> n;
+		cin >> start_x >> start_y >> end_x >> end_y;
+		if (end_x > start_x)
 		{
-			cost[i][j] = 999;
-			parent_x[i][j] = -1;
-			parent_y[i][j] = -1;
+			int temp1 = start_x;
+			start_x = end_x;
+			end_x = temp1;
+
+			int temp2 = start_y;
+			start_y = end_y;
+			end_y = temp2;
 		}
+		for (int i = 0; i < n; i++)
+		{
+			cin >> a[i] >> b[i] >> c[i] >> d[i] >> w[i];
+		}
+		for (int i = 0; i < end_x + 1; i++)
+		{
+			for (int j = 0; j < end_x + 1; j++)
+			{
+				cost[i][j] = 3000;
+			}
+		}
+		cost[0][0] = 0;
+		dfs(0, 0);
+		cout << cost[n - 1][n - 1] << endl;
 	}
-	cost[0][0] = 0;
-	dfs(0, 0);
-	print_path(n - 1, n - 1);
-	cout << cost[n - 1][n - 1] << endl;
 	return 0;
 }
