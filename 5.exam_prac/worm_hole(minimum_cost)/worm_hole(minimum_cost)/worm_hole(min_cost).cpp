@@ -19,7 +19,7 @@ void dfs(int i, int j)
 		cost[new_i][new_j] = cost[i][j] + 1;
 		dfs(new_i, new_j);
 	}
-	for (int k = 0; k < 5; k++)
+	for (int k = 0; k < n; k++)
 	{
 		int new_i, new_j;
 		if (i == a[k] && j == b[k])
@@ -49,7 +49,7 @@ int main()
 	{
 		cin >> n;
 		cin >> start_x >> start_y >> end_x >> end_y;
-		if (end_x > start_x)
+		if (start_x > end_x)
 		{
 			int temp1 = start_x;
 			start_x = end_x;
@@ -70,9 +70,30 @@ int main()
 				cost[i][j] = 3000;
 			}
 		}
-		cost[0][0] = 0;
-		dfs(0, 0);
-		cout << cost[n - 1][n - 1] << endl;
+		cost[start_x][start_y] = 0;
+		dfs(start_x, start_y);
+		cout<<"#"<<t<<" " << cost[end_x][end_y] << endl;
 	}
 	return 0;
 }
+
+/*
+3
+0
+0 0 60 60
+1
+0 0 2 0
+1 0 1 2 5
+5
+9 9 0 0  // 0 0 9 9
+1 1 4 4 2
+2 1 3 2 4
+4 5 7 8 5
+5 6 8 7 6
+8 8 9 9 5
+
+output
+#120
+#2
+#13
+*/
