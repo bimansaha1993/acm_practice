@@ -4,6 +4,10 @@ using namespace std;
 struct Point{
 	int x, y;
 	Point(){
+<<<<<<< HEAD:1.Practice/worm_hole(bfs)_by_struct/worm_hole(bfs)_by_struct/worm_hole_struct(bfs).cpp
+=======
+
+>>>>>>> ada3f0f5c3371f9208f18d7a5a78393cbf024058:3.Samsung/worm_hole(bfs)_by_struct/worm_hole(bfs)_by_struct/worm_hole_struct(bfs).cpp
 	}
 	Point(int x, int y)
 	{
@@ -148,7 +152,7 @@ int main()
 0 0 2 0
 1 0 1 2 5
 5
-0 0 9 9
+9 9 0 0
 1 1 4 4 2
 2 1 3 2 4
 4 5 7 8 5
