@@ -3,6 +3,9 @@ using namespace std;
 
 struct Point{
 	int x, y;
+	Point(){
+
+	}
 	Point(int x, int y)
 	{
 		this->x=x;
@@ -44,7 +47,7 @@ void enqueue(Point p)
 Point dequeue()
 {
 	if (isempty())
-		return 0;
+		return Point(-1,-1);
 	Point temp = queue[queue_front];
 	queue_front = (queue_front + 1) % queue_capacity;
 	queue_size--;
@@ -144,7 +147,7 @@ int main()
 0 0 2 0
 1 0 1 2 5
 5
-0 0 9 9
+9 9 0 0
 1 1 4 4 2
 2 1 3 2 4
 4 5 7 8 5
