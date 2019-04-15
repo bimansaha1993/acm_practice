@@ -1,5 +1,4 @@
 #include<iostream>
-#include<stdio.h>
 using namespace std;
 
 struct Point{
@@ -11,7 +10,7 @@ int n, w[5], mat[mx][mx], cost[mx], queue[mx], queue_front, queue_rear, queue_si
 Point wh_start[5], wh_end[5],nodes[mx];
 
 int fabs(int a) {
-	if (a < 0)
+	if (a < 0) 
 		return -a;
 	return a;
 }
@@ -133,7 +132,6 @@ int main()
 			mat[start_node_i][end_node_i] = w[i];
 			mat[end_node_i][start_node_i] = w[i];
 		}
-		
 		bfs(0);
 		cout << "#" << t << " " << cost[1] << endl;
 	}

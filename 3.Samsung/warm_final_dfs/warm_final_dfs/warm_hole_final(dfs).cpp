@@ -10,12 +10,6 @@ struct Point{
 int n, w[5], mat[mx][mx], cost[mx], node_cnt;
 Point wh_start[5], wh_end[5], nodes[mx];
 
-int fabs(int a) {
-	if (a < 0)
-		return -a;
-	return a;
-}
-
 void dfs(int u)
 {
 	for (int v = 0; v < node_cnt; v++)
@@ -26,6 +20,12 @@ void dfs(int u)
 			dfs(v);
 		}
 	}
+}
+
+int fabs(int a) {
+	if (a < 0)
+		return -a;
+	return a;
 }
 
 void calculate_cost(int i, int j)

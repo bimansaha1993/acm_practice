@@ -1,10 +1,11 @@
 #include<iostream>
 using namespace std;
 
+#define mx 1005
 int dx[4] = { 0, 0, +1, -1 }; //r,l,d,u
 int dy[4] = { +1, -1, 0, 0 };
 int height, width, verticale_l, horizontal_l, length, cnt, type;
-int visit[100][100], arr[100][100];
+int visit[mx][mx], arr[mx][mx];
 
 bool cango(int a, int b, int c, int d)
 {

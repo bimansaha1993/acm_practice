@@ -132,7 +132,6 @@ int main()
 			mat[start_node_i][end_node_i] = w[i];
 			mat[end_node_i][start_node_i] = w[i];
 		}
-		
 		bfs(0);
 		cout << "#" << t << " " << cost[1] << endl;
 	}
