@@ -87,14 +87,14 @@ int main()
 		max_score(1);
 		int sol = 0;
 		cin >> row >> column;
-		cout << "SOLN       COLUMN" << endl;
-		cout << " #      1 2 3 4 5 6 7 8" << endl;
+		cout << "SOLN      COLUMN" << endl;
+		cout << " #     1 2 3 4 5 6 7 8" << endl;
 		cout << endl;
 		for (int i = 1; i <= n; i++)
 		{
 			if (ans[i][column] == row)
 			{
-				cout << " " << ++sol<<"      ";
+				cout << " " << ++sol<<"     ";
 				for (int j = 1; j <= 8; j++)
 				{
 					cout << ans[i][j] << " ";
