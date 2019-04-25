@@ -43,6 +43,18 @@ void solve_sudoku(int row,int column)
 	if (row == 9 && column == 0)
 	{
 		flag = 1;
+		int sol = 1;
+		cout << "Solution " << sol << ": " << endl;
+		for (int i = 0; i < 9; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
+				cout << arr[i][j] << " ";
+			}
+			cout << endl;
+		}
+		sol++;
+		flag = 0;
 		return;
 	}
 	if (arr[row][column] != 0)
@@ -88,15 +100,15 @@ int main()
 		}
 		flag = 0;
 		solve_sudoku(0, 0);
-		cout << "Case " << t << ":" << endl;
+		/*cout << "Case " << t << ":" << endl;
 		for (int i = 0; i < 9; i++)
 		{
 			for (int j = 0; j < 9; j++)
 			{
-				cout << arr[i][j];
+				cout << arr[i][j]<<" ";
 			}
 			cout << endl;
-		}
+		}*/
 	}
 	return 0;
 }
