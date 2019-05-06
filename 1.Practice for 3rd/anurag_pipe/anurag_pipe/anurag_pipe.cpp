@@ -14,15 +14,15 @@ struct Point{
 
 #define mx 1005
 
-int dx[4] = { -1, 0, +1, 0 };
-int dy[4] = { 0, -1, 0, +1 };
-int height, width, vertical_l, horizontal_l, length, arr[mx][mx], len_arr[mx][mx], visit[mx][mx];
-Point queue[1000005];
+int dx[4] = { -1, 0, 1, 0 };
+int dy[4] = { 0, -1, 0, 1 };
+int height, width, vertical_l, horizontal_l, length, arr[mx][mx], visit[mx][mx], len_arr[mx][mx];
 int queue_front, queue_rear, queue_size, queue_capacity = 1000005;
+Point queue[1000005];
 
 void queue_clear()
 {
-	queue_front = 0; 
+	queue_front = 0;
 	queue_rear = 0;
 	queue_size = 0;
 }
@@ -35,11 +35,11 @@ bool isempty()
 		return false;
 }
 
-void enqueue(Point p)
+void enqueue(Point a)
 {
 	if (queue_size == queue_capacity)
 		return;
-	queue[queue_rear] = p;
+	queue[queue_rear] = a;
 	queue_rear = (queue_rear + 1) % queue_capacity;
 	queue_size++;
 }
@@ -49,7 +49,7 @@ Point dequeue()
 	if (isempty())
 		return Point(-1, -1);
 	Point temp = queue[queue_front];
-	queue_front = (queue_front + 1)%queue_capacity;
+	queue_front = (queue_front + 1) % queue_capacity;
 	queue_size--;
 	return temp;
 }
@@ -134,8 +134,8 @@ int bfs(int i, int j, int len)
 		return 0;
 	bfs_reset();
 	enqueue(Point(i, j));
+	visit[i][j] = true;
 	len_arr[i][j] = len;
-	visit[i][j] = 1;
 	int cnt = 1;
 	while (!isempty())
 	{
@@ -156,11 +156,11 @@ int bfs(int i, int j, int len)
 				continue;
 			if (len_arr[u][v] - 1 > len_arr[new_i][new_j])
 			{
-				if (visit[new_i][new_j] == 0)
+				if (!visit[new_i][new_j])
 					cnt++;
 				enqueue(Point(new_i, new_j));
+				visit[new_i][new_j] = true;
 				len_arr[new_i][new_j] = len_arr[u][v] - 1;
-				visit[new_i][new_j] = 1;
 			}
 		}
 	}

@@ -11,7 +11,7 @@ void calculate()
 		bool has_zero = false;
 		for (int j = 0; j < m; j++)
 		{
-			if ((arr[i][j] ^ laser[j]) == 0)
+			if (arr[i][j] == laser[j])
 			{
 				has_zero = true;
 				break;
