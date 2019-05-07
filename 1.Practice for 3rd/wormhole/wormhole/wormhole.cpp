@@ -7,8 +7,9 @@ struct Point{
 
 #define mx 15
 
-int n, w[5], mat[mx][mx], cost[mx], queue_rear, queue_front, queue_size, queue_capacity=mx, queue[mx],node_cnt;
-Point node[mx], wh_start[5], wh_end[5];
+int n, w[5], mat[mx][mx], cost[mx], node_cnt;
+int queue_front, queue_rear, queue_size, queue_capacity = mx,queue[mx];
+Point nodes[mx], wh_start[5], wh_end[5];
 
 void queue_clear()
 {
@@ -38,8 +39,8 @@ int dequeue()
 {
 	if (isempty())
 		return 0;
-	int temp = queue[queue_front];
-	queue_front = (queue_front + 1) % queue_capacity;
+	int temp=queue[queue_front];
+	queue_front = (queue_front + 1)%queue_capacity;
 	queue_size--;
 	return temp;
 }
@@ -49,7 +50,7 @@ void bfs_reset()
 	queue_clear();
 	for (int i = 0; i < node_cnt; i++)
 	{
-		cost[i] = 3001;
+		cost[i] = 3005;
 	}
 }
 
@@ -63,7 +64,7 @@ void bfs(int start)
 		int u = dequeue();
 		for (int v = 0; v < node_cnt; v++)
 		{
-			if (cost[v]>cost[u] + mat[u][v])
+			if (cost[v]>cost[u]+mat[u][v])
 			{
 				enqueue(v);
 				cost[v] = cost[u] + mat[u][v];
@@ -81,8 +82,8 @@ int fabs(int a)
 
 void calculate_cost(int i, int j)
 {
-	Point a = node[i];
-	Point b = node[j];
+	Point a = nodes[i];
+	Point b = nodes[j];
 	int costs = fabs(a.x - b.x) + fabs(a.y - b.y);
 	mat[i][j] = costs;
 	mat[j][i] = costs;
@@ -90,7 +91,7 @@ void calculate_cost(int i, int j)
 
 void add_node(Point p)
 {
-	node[node_cnt] = p;
+	nodes[node_cnt] = p;
 	node_cnt++;
 }
 
@@ -115,6 +116,7 @@ int main()
 			add_node(wh_start[i]);
 			add_node(wh_end[i]);
 		}
+
 		for (int i = 0; i < node_cnt; i++)
 		{
 			for (int j = 0; j < node_cnt; j++)
@@ -122,6 +124,7 @@ int main()
 				calculate_cost(i, j);
 			}
 		}
+
 		for (int i = 0; i < n; i++)
 		{
 			int start_node = 2 * i + 2;
@@ -132,5 +135,4 @@ int main()
 		bfs(0);
 		cout << "# " << t << ": " << cost[1] << endl;
 	}
-	return 0;
 }

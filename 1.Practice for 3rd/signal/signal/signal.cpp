@@ -5,7 +5,7 @@ int n, m, k, arr[105][25], laser[25], mx;
 
 void calculate()
 {
-	int cnt=0;
+	int cnt = 0;
 	for (int i = 0; i < n; i++)
 	{
 		bool has_zero = false;
@@ -24,21 +24,21 @@ void calculate()
 		mx = cnt;
 }
 
-void solve(int i, int c)
+void solve(int i, int l)
 {
 	if (i >= m)
 	{
-		if (c % 2 == 0)
+		if (l % 2 == 0)
 		{
 			calculate();
 		}
 		return;
 	}
 	laser[i] = 1;
-	if (c > 0)
-		solve(i + 1, c - 1);
+	if (l > 0)
+		solve(i + 1, l - 1);
 	laser[i] = 0;
-	solve(i + 1, c);
+	solve(i + 1, l);
 }
 
 int main()
@@ -60,5 +60,4 @@ int main()
 		solve(0, k);
 		cout << "# " << t << ": " << mx << endl;
 	}
-	return 0;
 }
