@@ -12,11 +12,11 @@ struct Point{
 	}
 };
 
-#define mx 1005
+#define mx 1000
 
-int dx[4] = { -1, 0, 1, 0 };
-int dy[4] = { 0, -1, 0, 1 };
-int height, width, vertical_l, horizontal_l, length, visit[mx][mx], len_arr[mx][mx], arr[mx][mx];
+int dx[4] = { -1, 0, +1, 0 };
+int dy[4] = { 0, -1, 0, +1 };
+int height, width, verticale_length, horizonatal_length, length, arr[mx][mx], visit[mx][mx],len_arr[mx][mx];
 int queue_front, queue_rear, queue_size, queue_capacity = 1000005;
 Point queue[1000005];
 
@@ -61,8 +61,8 @@ void bfs_reset()
 	{
 		for (int j = 0; j < width; j++)
 		{
-			len_arr[i][j] = 0;
 			visit[i][j] = 0;
+			len_arr[i][j] = 0;
 		}
 	}
 }
@@ -128,14 +128,14 @@ bool cango(int a, int b, int c, int d)
 	return false;
 }
 
-int bfs(int i, int j, int len)
+int bfs(int i,int j,int len)
 {
 	if (arr[i][j] == 0)
 		return 0;
 	bfs_reset();
 	enqueue(Point(i, j));
-	visit[i][j] = 1;
 	len_arr[i][j] = len;
+	visit[i][j] = 1;
 	int cnt = 1;
 	while (!isempty())
 	{
@@ -158,7 +158,7 @@ int bfs(int i, int j, int len)
 			{
 				if (visit[new_i][new_j] == 0)
 					cnt++;
-				enqueue(Point(new_i,new_j));
+				enqueue(Point(new_i, new_j));
 				visit[new_i][new_j] = 1;
 				len_arr[new_i][new_j] = len_arr[u][v] - 1;
 			}
@@ -173,7 +173,7 @@ int main()
 	cin >> test;
 	for (int t = 1; t <= test; t++)
 	{
-		cin >> height >> width >> vertical_l >> horizontal_l >> length;
+		cin >> height >> width >> verticale_length >> horizonatal_length >> length;
 		for (int i = 0; i < height; i++)
 		{
 			for (int j = 0; j < width; j++)
@@ -181,7 +181,8 @@ int main()
 				cin >> arr[i][j];
 			}
 		}
-		int ans =bfs(vertical_l, horizontal_l, length);
-		cout << "# " << t << ": " << ans << endl;
+		int ans = bfs(verticale_length, horizonatal_length, length);
+		cout << "Case " << t << ": " << ans << endl;
 	}
+	return 0;
 }

@@ -1,9 +1,9 @@
 #include<iostream>
 using namespace std;
 
-#define mx 101
-
-int node, edge, arr[mx][mx], queue_front, queue_rear, queue_size, queue_capacity = mx, queue[mx], color[mx];
+#define mx 100
+int node, edge, arr[mx][mx], color[mx];
+int queue_front, queue_rear, queue_size, queue_capacity = mx, queue[mx];
 
 void queue_clear()
 {
@@ -114,7 +114,8 @@ int main()
 		}
 		if (is_possible == 1)
 		{
-			cout << "White color :";
+			cout << "Case " << t << ": " << endl;
+			cout << "Black Colour :";
 			for (int i = 1; i <= node; i++)
 			{
 				if (color[i] == 1)
@@ -123,7 +124,7 @@ int main()
 				}
 			}
 			cout << endl;
-			cout << "black color :";
+			cout << "White Colour :";
 			for (int i = 1; i <= node; i++)
 			{
 				if (color[i] == 2)

@@ -1,9 +1,9 @@
 #include<iostream>
 using namespace std;
 
-#define mx 101
-
-int node, edge, arr[mx][mx], visit[mx], parent[mx], queue_front, queue_rear, queue_size, queue_capacity = mx, queue[mx], p_cnt, path[mx];
+#define mx 100
+int node, edge, arr[mx][mx], parent[mx], visit[mx], p_cnt, path[mx];
+int queue_front, queue_rear, queue_size, queue_capacity = 10000, queue[mx];
 
 void queue_clear()
 {
@@ -49,7 +49,7 @@ void bfs_reset()
 	}
 }
 
-void bfs(int start, int des)
+int bfs(int start, int des)
 {
 	bfs_reset();
 	enqueue(start);
@@ -62,11 +62,12 @@ void bfs(int start, int des)
 			if (arr[u][v] == 1 && visit[v] == 0)
 			{
 				enqueue(v);
-				parent[v] = u;
 				visit[v] = 1;
+				parent[v] = u;
 			}
 		}
 	}
+	return visit[des];
 }
 
 void print_path(int des)
@@ -78,7 +79,7 @@ void print_path(int des)
 	p_cnt++;
 }
 
-void sort(int p[],int length)
+void sort(int p[], int length)
 {
 	for (int i = 0; i < length; i++)
 	{
@@ -115,16 +116,16 @@ int main()
 			arr[n1][n2] = 1;
 		}
 		int cycle_found = 0;
-		for (int i = 1; i <= node && cycle_found==0; i++)
+		for (int i = 1; i <= node && cycle_found == 0; i++)
 		{
 			for (int j = 1; j <= node && cycle_found == 0; j++)
 			{
-				if (arr[i][j]==1)
+				if (arr[i][j] == 1)
 				{
 					int start = j;
 					int des = i;
-					bfs(start, des);
-					if (visit[des]==1)
+					int d = bfs(start, des);
+					if (d == 1)
 					{
 						cycle_found = 1;
 						p_cnt = 0;
@@ -135,8 +136,8 @@ int main()
 		}
 		if (cycle_found == 1)
 		{
-			cout << "Case" << t << ": ";
 			sort(path, p_cnt);
+			cout << "Case " << t << ": ";
 			for (int i = 0; i < p_cnt; i++)
 			{
 				cout << path[i] << " ";
@@ -144,7 +145,7 @@ int main()
 			cout << endl;
 		}
 		else
-			cout <<"Case "<< t << ": " << "No Cycle Found" << endl;
+			cout << "Case " << t << ": " << "No Cycle Found" << endl;
 	}
 	return 0;
 }

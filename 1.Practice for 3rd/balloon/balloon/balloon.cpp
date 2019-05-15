@@ -1,12 +1,12 @@
 #include<iostream>
 using namespace std;
 
-int n, arr[20], taken[20];
+int n, arr[12], taken[12];
 
-int get_val(int idx)
+int getval(int idx)
 {
-	bool has_left=false, has_right=false;
-	int right_val, left_val;
+	bool has_left = false, has_right = false;
+	int left_val, right_val;
 	for (int i = idx - 1; i >= 0; i--)
 	{
 		if (taken[i] == 0)
@@ -16,12 +16,12 @@ int get_val(int idx)
 			break;
 		}
 	}
-	for (int i = idx + 1; i < n; i++)
+	for (int j = idx + 1; j < n; j++)
 	{
-		if (taken[i] == 0)
+		if (taken[j] == 0)
 		{
 			has_right = true;
-			right_val = arr[i];
+			right_val = arr[j];
 			break;
 		}
 	}
@@ -36,16 +36,16 @@ int get_val(int idx)
 
 int calculate_score(int i)
 {
-	if (i == n)
+	if (i >= n)
 	{
 		return 0;
 	}
 	int sum = 0, score = 0;
 	for (int j = 0; j < n; j++)
 	{
-		int val = get_val(j);
 		if (taken[j] == 0)
 		{
+			int val = getval(j);
 			taken[j] = 1;
 			sum = calculate_score(i + 1) + val;
 			if (sum > score)
@@ -69,7 +69,7 @@ int main()
 			taken[i] = 0;
 		}
 		int ans = calculate_score(0);
-		cout << "# " << t << ": " << ans << endl;
+		cout << "Case " << t << ": " << ans << endl;
 	}
 	return 0;
 }
