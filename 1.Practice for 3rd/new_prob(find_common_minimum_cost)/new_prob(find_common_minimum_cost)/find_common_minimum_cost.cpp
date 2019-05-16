@@ -124,29 +124,11 @@ int main()
 			{
 				for (int j = 0; j < size; j++)
 				{
-					if (cost[i][j]>mx)
-					{
-						mx = cost[i][j];
-						//ans_i = i;
-						//ans_j = j;
-					}
-				}
-			}
-			if (mx < mn)
-				mn = mx;
-
-			//for first thought
-			/*for (int i = 0; i < size; i++)
-			{
-				for (int j = 0; j < size; j++)
-				{
 					total_cost[i][j] = total_cost[i][j] + cost[i][j];
 				}
-			}*/
+			}
 		}
-		cout << mn << endl;
-		//for first thought
-		/*int ans=1000, ans_i, ans_j;
+		int ans=1000, ans_i, ans_j;
 		for (int i = 0; i < size; i++)
 		{
 			for (int j = 0; j < size; j++)
@@ -162,7 +144,7 @@ int main()
 			}
 			cout << endl;
 		}
-		cout << ans << " " << ans_i << " " << ans_j;*/
+		cout << ans << " " << ans_i << " " << ans_j;
 	}
 	return 0;
 }
